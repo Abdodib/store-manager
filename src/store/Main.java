@@ -6,6 +6,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -61,5 +64,36 @@ public static String hashPassword(String password) {
         return null;
     }
 }
+
+
+    // Vérifier si l'email est valide
+    public static boolean isValidEmail(String email) {
+        String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
+    // Vérifier si le mot de passe est valide
+    public static boolean isValidPassword(String password) {
+        if (password.length() < 8) {
+            return false;
+        }
+        
+        if (!Character.isUpperCase(password.charAt(0))) {
+            return false;
+        }
+        
+        String specialChars = "!@#$%^&*()-+=<>?/{}[]|\\";
+        int specialCharCount = 0;
+        
+        for (char c : password.toCharArray()) {
+            if (specialChars.contains(String.valueOf(c))) {
+                specialCharCount++;
+            }
+        }
+        
+        return specialCharCount == 1;
+    }
 
 }

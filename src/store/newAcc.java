@@ -241,6 +241,17 @@ public class newAcc {
                     JOptionPane.showMessageDialog(null, "All fields are required!");
                     return;
                 }
+                
+                if(! Main.isValidEmail(email)) {
+                	JOptionPane.showMessageDialog(null, "please put a corect email!");
+                    return;
+                }
+                
+                if(Main.isValidPassword(password)) {
+                	JOptionPane.showMessageDialog(null, "password should have capital later , constect from 8 character^, special character @$");
+                    return;
+                }
+                
                 if (!adminRadio.isSelected() && !guestRadio.isSelected()) {
                     JOptionPane.showMessageDialog(null, "Please select 'Admin' or 'Guest'");
                     return;
@@ -266,7 +277,7 @@ public class newAcc {
                             JOptionPane.showMessageDialog(null, "Account created successfully!");
                             frame.dispose();
 
-                            // Open admin frame if user is an admin
+                         
                             if (role.equals("Admin")) {
                                 admin newAdmin = new admin(name, phone, email, password);
                                 newAdmin.menu(accounts, menu);
@@ -281,48 +292,7 @@ public class newAcc {
         });
 
 
-//        JButton signUpButton = Main.button("Sign Up");
-//        signUpButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                String name = nameField.getText().trim();
-//                String phone = phoneField.getText().trim();
-//                String email = emailField.getText().trim();
-//                String password = passwordField.getText().trim();
-//
-//                if (name.equals("")) {
-//                    JOptionPane.showMessageDialog(null, "Name can't be empty");
-//                    return;
-//                }
-//                if (phone.equals("")) {
-//                    JOptionPane.showMessageDialog(null, "Phone number can't be empty");
-//                    return;
-//                }
-//                if (email.equals("")) {
-//                    JOptionPane.showMessageDialog(null, "Email can't be empty");
-//                    return;
-//                }
-//                if (password.equals("")) {
-//                    JOptionPane.showMessageDialog(null, "Password can't be empty");
-//                    return;
-//                }
-//                if (!adminRadio.isSelected() && !guestRadio.isSelected()) {
-//                    JOptionPane.showMessageDialog(null, "Please select 'Admin' or 'Guest'");
-//                    return;
-//                }
-//
-//                account newAccount;
-//                if (adminRadio.isSelected()) {
-//                    newAccount = new admin(name, phone, email, password);
-//                } else {
-//                    newAccount = new guest(name, phone, email, password);
-//                }
-//
-//                accounts.add(newAccount);
-//                newAccount.menu(accounts, menu);
-//                frame.dispose();
-//            }
-//        });
+        
         panel.add(signUpButton);
 
         panel.setBorder(BorderFactory.createEmptyBorder(80, 100, 80, 100));

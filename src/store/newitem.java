@@ -60,6 +60,12 @@ public newitem(ArrayList<item> menu) {
       panel.add(priceLabel);
       panel.add(priceField);
       
+      JLabel  quantityLabel = Main.label("item quantity");
+      nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+      JTextField quantityField = Main.textField();
+      panel.add( quantityLabel);
+      panel.add( quantityField);
+      
       JLabel pic = new JLabel();
       pic.setHorizontalAlignment(SwingConstants.CENTER);
       panel.add(pic);
@@ -98,7 +104,8 @@ return;
 		public void actionPerformed(ActionEvent e) {
 		String n = nameField.getText().toString();
 		String p = priceField.getText().toString();
-		item m = new item(n, Double.parseDouble(p), filepath);
+		String q = quantityField.getText().toString();
+		item  m = new item(n, Double.parseDouble(p), filepath, q);		
 			menu.add(m);
 			JOptionPane.showMessageDialog(null, "Item added succesfully");
 			frame.dispose();

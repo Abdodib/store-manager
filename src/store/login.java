@@ -119,18 +119,30 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 public class login {
 
+	
+	
     public login(ArrayList<account> accounts, ArrayList<item> menu) {
         JFrame frame = new JFrame("Login");
+        
+try {
+		System.setProperty("sun.awt.noerasebackground", "true");
+		UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+		SwingUtilities.updateComponentTreeUI(frame);
+	}catch (Exception e) {
+		e.printStackTrace();
+	}
 
         frame.setSize(700, 550);
         frame.setLayout(new BorderLayout());
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
         ((JComponent) frame.getContentPane()).setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
-
+        frame.getContentPane().setBackground(Main.foreground);
         JPanel panel = new JPanel(new GridLayout(4, 2, 20, 20));
 
         JLabel emailLabel = Main.label("Email");
